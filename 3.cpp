@@ -6,6 +6,7 @@ using namespace std;
 //function prototypes
 void displayArray(int array[], int size);
 //add prototype for printRatio
+void printRatio(int array[], int size);
 
 
 const int SIZE = 11;
@@ -14,6 +15,7 @@ int main()
 {
     int numbers[SIZE] ={7,-2,4,6, 9, 11,-5, 12, 9, 2, 3};
     //call printRatio here
+    printRatio(numbers, SIZE);
 
 
     return 0;
@@ -28,3 +30,52 @@ int main()
             There are 18.18% of negative numbers
             There are no zero numbers
 *********************************************************************************/
+
+void printRatio(int array[], int size)
+{
+    int Pos = 0,
+        Neg = 0,
+        Zero = 0;
+    //count numbers
+    for(int i = 0; i < size; i++)
+    {
+        if(array[i] > 0)
+        {
+            Pos++;
+        }
+        else if(array[i] < 0)
+        {
+            Neg++;
+        }
+        else
+        {
+            Zero++;
+        }
+    }
+
+    //print ratios
+    if(Pos != 0)
+    {
+        cout << "There are " <<fixed<<setprecision(2)<<static_cast<double>(Pos)*100/size<< "% of positive numbers\n";
+    }
+    else
+    {
+        cout << "There are no positive numbers\n";
+    }
+    if(Neg != 0)
+    {
+        cout << "There are " <<fixed<<setprecision(2)<<static_cast<double>(Neg)*100/size<< "% of negative numbers\n";
+    }
+    else
+    {
+        cout << "There are no negative numbers\n";
+    }
+    if(Zero != 0)
+    {
+        cout << "There are " <<fixed<<setprecision(2)<<static_cast<double>(Zero)*100/size<< "% of zero numbers\n";
+    }
+    else
+    {
+        cout << "There are no zero numbers\n";
+    }
+}
