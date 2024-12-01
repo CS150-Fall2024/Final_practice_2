@@ -6,6 +6,8 @@ const int SIZE = 32;
 //function prototypes
 void displayArray(int array[], int size);
 //add addition prototype(s) here
+void sortTopFive(int array[], int size);
+void displayTopFive(int array[], int size);
 
 
 
@@ -14,6 +16,7 @@ int main()
     int numbers[SIZE] ={98, 72, 34, 67, 89, 97, 78, 100, 24, 99, 89, 98, 45, 97, 67, 77,
                         88, 34, 78, 79, 95, 32, 100, 58, 79, 85, 82, 92, 89, 91, 84, 82};
     //call displayTopFive
+    displayTopFive(numbers, SIZE);
 
     return 0;
 }
@@ -27,6 +30,41 @@ int main()
 Example: 
     Top five: 100, 100, 99, 98, 98
 *********************************************************************/
+void sortTopFive(int array[], int size)
+{
+    int maxIndex, maxValue;
+    for (int startScan = 0; startScan < 5; ++startScan)
+    {
+        maxIndex = startScan;
+        maxValue = array[startScan];
+        for (int index = startScan + 1; index < size; ++index)
+        {
+            if (array[index] > maxValue)
+            {
+                maxValue = array[index];
+                maxIndex = index;
+            }
+        }
+        array[maxIndex] = array[startScan];
+        array[startScan] = maxValue;
+    }
+}
+
+
+void displayTopFive(int array[], int size)
+{
+    sortTopFive(array, size);
+    cout << "Top five: ";
+    for(int i = 0; i < 5; i++)
+    {
+        cout << array[i];
+        if(i < 4)
+        {
+            cout << ", ";
+        }
+    }
+    cout << endl;
+}
 
 
 
