@@ -1,4 +1,4 @@
-//1.cpp(5 pts)
+//1.cpp (5 pts)
 #include <iostream>
 using namespace std;
 
