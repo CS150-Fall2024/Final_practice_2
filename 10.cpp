@@ -1,10 +1,12 @@
 //10.cpp(25 pts)
 #include <iostream>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 //function prototypes
 //add prototype for convert
+string convert(string time12);
 
 
 const int SIZE = 11;
@@ -32,3 +34,48 @@ Hint: You may access each element of the string using an array subscript.
 Note: 	12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
         12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
 *********************************************************************************/
+string convert(string time12)
+{
+    string time24;
+    string hrs;
+    //convert hour if time is AM
+    int n = time12.length();
+    if(time12[n-2] == 'A')
+    {
+        time24 = time12.substr(0, n-2);
+    }
+    //convert hour if time is PM
+    else
+    {
+        int h;
+        if(time12[1] == ':')
+        {
+            h=1;
+        }
+        else
+        {
+            h=2;
+        }
+        hrs = time12.substr(0, h);
+        int hrI = stoi(hrs);
+        hrI += 12;
+        hrs = to_string(hrI);
+        time24 = time12.substr(h, 6);
+        time24 = hrs+time24;
+    }
+    
+    //special cases
+    if(time12[1] == '2')
+    {
+        if(time12[n-2] == 'A')
+        {
+            hrs = "00";
+        }
+        else
+        {
+            hrs = "12";
+        }
+        time24 = hrs+time12.substr(2, 6);
+    }
+    return time24;
+}
